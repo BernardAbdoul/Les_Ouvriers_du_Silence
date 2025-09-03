@@ -2,7 +2,7 @@
 
 Déposez ce dossier dans votre dépôt GitHub (racine), puis activez GitHub Pages.
 - Settings → Pages → Source: *Deploy from a branch* → Branch: `main` → Folder: `/ (root)`
-- URL attendue : `https://<votre_pseudo>.github.io/<nom_du_repo>/`
+- URL attendue : `https://bernardabdoul.github.io/Les_Ouvriers_du_Silence/`
 
 ## Utilisation
 - Bouton 📱 : lit `videos/mobile.mp4`
