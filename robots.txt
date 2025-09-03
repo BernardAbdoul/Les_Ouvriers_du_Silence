@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 # Remplacez l'URL ci-dessous par votre URL réelle de GitHub Pages :
-Sitemap: https://<votre_pseudo>.github.io/Les_Ouvriers_du_Silence/sitemap.xml
+Sitemap: https://bernardabdoul.github.io/Les_Ouvriers_du_Silence/sitemap.xml
