@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Les Ouvriers du Silence – Choisis ta version</title>
+  <meta name="description" content="Deux versions vidéo : smartphone et TV/PC." />
+  <style>
+    :root { --bg:#0b0b10; --fg:#f6f7fb; --line:#1d2230; }
+    html,body{height:100%} body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial}
+    .wrap{max-width:960px;margin:0 auto;padding:24px}
+    .card{border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.35);background:#11131a}
+    .head{padding:14px 16px;border-bottom:1px solid var(--line);font-weight:800}
+    .poster{display:block;width:100%;height:auto;object-fit:cover}
+    .body{padding:16px}
+    .controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    button{appearance:none;border:1px solid #2a3347;background:#141a24;color:var(--fg);padding:10px 14px;border-radius:12px;font-weight:700;cursor:pointer}
+    button:hover{border-color:#3a4760}
+    video{width:100%;height:auto;display:none;margin-top:14px;background:#000;border-radius:12px;outline:none}
+    video.active{display:block}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card" role="region" aria-label="Lecteur vidéo Les Ouvriers du Silence">
+      <div class="head">Les Ouvriers du Silence — Choisis ta version</div>
+      <img class="poster" src="assets/cover.jpg" alt="Pochette Les Ouvriers du Silence" />
+      <div class="body">
+        <div class="controls">
+          <button id="btn-mobile">📱 Version smartphone</button>
+          <button id="btn-desktop">🖥️ Version TV / PC</button>
+        </div>
+        <video id="player" playsinline controls preload="metadata" poster="assets/cover.jpg"></video>
+      </div>
+    </div>
+  </div>
+
+<script>
+const SOURCES = {
+  mobile: 'videos/mobile.mp4',
+  desktop: 'videos/desktop.mp4'
+};
+const player = document.getElementById('player');
+
+async function playKind(kind){
+  const src = SOURCES[kind]; if(!src) return;
+  player.src = src; player.classList.add('active');
+  try { await player.play(); } catch(e) {}
+  player.scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+document.getElementById('btn-mobile').addEventListener('click', ()=>playKind('mobile'));
+document.getElementById('btn-desktop').addEventListener('click', ()=>playKind('desktop'));
+
+// Lecture auto via paramètre ?v=mobile|desktop (fonctionnel mais non affiché)
+const v = new URLSearchParams(location.search).get('v');
+if(v==='mobile' || v==='desktop'){ requestAnimationFrame(()=>playKind(v)); }
+</script>
+</body>
+</html>
